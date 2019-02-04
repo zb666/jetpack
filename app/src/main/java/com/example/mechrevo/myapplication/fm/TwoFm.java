@@ -1,0 +1,30 @@
+package com.example.mechrevo.myapplication.fm;
+
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import androidx.navigation.fragment.NavHostFragment;
+import com.example.mechrevo.myapplication.R;
+
+public class TwoFm extends Fragment {
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return LayoutInflater.from(getActivity()).inflate(R.layout.fragment_one,null);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        TextView textView = view.findViewById(R.id.textView);
+        textView.setText(getClass().getSimpleName());
+
+        NavHostFragment.findNavController(TwoFm.this)
+                .navigate(R.id.action_oneFm2_to_oneFm3);
+    }
+}
