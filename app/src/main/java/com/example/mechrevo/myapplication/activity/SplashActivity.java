@@ -53,18 +53,17 @@ public class SplashActivity extends AppCompatActivity {
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setChannelId("111")
                 .build();
-//        NotificationManagerCompat.from(getApplicationContext()).notify(111, notification);
-
         final NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
         //ChannelId为"001",ChannelName为"my_channel"
         NotificationChannel channel = new NotificationChannel("111",
-                "my_channel", NotificationManager.IMPORTANCE_DEFAULT);
+                "dev.com.vivo.cn", NotificationManager.IMPORTANCE_DEFAULT);
         channel.enableLights(true); //是否在桌面icon右上角展示小红点
         channel.setLightColor(Color.GREEN); //小红点颜色
         channel.setShowBadge(true); //是否在久按桌面图标时显示此渠道的通知
-        manager.createNotificationChannel(channel);
-
+        if (manager != null) {
+            manager.createNotificationChannel(channel);
+        }
         findViewById(R.id.textView2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
