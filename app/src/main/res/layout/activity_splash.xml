@@ -8,7 +8,6 @@
         tools:context=".activity.SplashActivity">
 
     <TextView
-
             android:text="开启通知栏"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" tools:layout_editor_absoluteY="245dp"
@@ -19,5 +18,16 @@
             android:layout_width="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/textView2"
             android:layout_height="wrap_content" tools:layout_editor_absoluteY="245dp"
-            tools:layout_editor_absoluteX="142dp" android:id="@+id/tvCancle" tools:ignore="MissingConstraints"/>
+            tools:layout_editor_absoluteX="142dp"
+            android:id="@+id/tvCancle"
+            tools:ignore="MissingConstraints"/>
+    <TextView
+            android:text="点击进行跳转"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/tvCancle"
+            android:layout_height="30dp" tools:layout_editor_absoluteY="245dp"
+            tools:layout_editor_absoluteX="142dp"
+            android:id="@+id/tvJump"
+            tools:ignore="MissingConstraints"/>
 </android.support.constraint.ConstraintLayout>

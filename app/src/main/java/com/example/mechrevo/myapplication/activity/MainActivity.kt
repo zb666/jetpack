@@ -12,6 +12,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        addTest(object : I {
+            override fun add() {
+
+            }
+        })
         val finalHost = NavHostFragment.create(R.navigation.nav_test)
         supportFragmentManager.beginTransaction()
             .replace(R.id.nav_host_fragment,finalHost)
@@ -23,4 +28,11 @@ class MainActivity : AppCompatActivity() {
         R.id.nav_host_fragment
     ).navigateUp()
 
+    fun addTest(i:I){
+
+    }
+
+    interface I{
+        fun add()
+    }
 }

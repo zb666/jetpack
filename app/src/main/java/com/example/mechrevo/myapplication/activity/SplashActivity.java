@@ -22,11 +22,14 @@ import com.example.mechrevo.myapplication.R;
 
 public class SplashActivity extends AppCompatActivity {
 
+    private static Context sContext;
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        sContext = this;
 //        SystemClock.sleep(2000);
         // startActivity(new Intent(this,MainActivity.class));
 //        finish();
@@ -76,6 +79,15 @@ public class SplashActivity extends AppCompatActivity {
                 manager.cancel(111);
             }
         });
+
+        findViewById(R.id.tvJump).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(v.getContext(),DemoActivity.class));
+                finish();
+            }
+        });
+
 
     }
 
