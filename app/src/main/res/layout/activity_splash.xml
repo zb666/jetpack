@@ -30,4 +30,25 @@
             tools:layout_editor_absoluteX="142dp"
             android:id="@+id/tvJump"
             tools:ignore="MissingConstraints"/>
+
+    <TextView
+            android:text="SVGA"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/tvJump"
+            android:layout_height="30dp" tools:layout_editor_absoluteY="245dp"
+            tools:layout_editor_absoluteX="142dp"
+            android:id="@+id/tvSVGA"
+            tools:ignore="MissingConstraints"/>
+
+
+    <com.opensource.svgaplayer.SVGAImageView
+            android:id="@+id/svga"
+            android:visibility="gone"
+            app:source="posche.svga"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimaryDark"
+            app:autoPlay="false"/>
+
 </android.support.constraint.ConstraintLayout>

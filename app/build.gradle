@@ -3,6 +3,9 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'org.greenrobot.greendao'
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -24,7 +27,11 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 }
-
+greendao{
+    schemaVersion 1
+    targetGenDir 'src/main/java'
+    daoPackage //生成代码到具体的包下
+}
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -32,6 +39,7 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     testImplementation 'junit:junit:4.12'
     api 'com.google.code.gson:gson:2.7'
+
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'android.arch.navigation:navigation-fragment:1.0.0-alpha11'
@@ -39,4 +47,9 @@ dependencies {
     implementation project(':butter_annotations')
     implementation project(':butterknife_compiler')
     compile 'com.squareup:javapoet:1.9.0'
+    compile 'com.youth.banner:banner:1.4.10'
+
+    compile 'com.github.yyued:SVGAPlayer-Android:2.1.8'
+
+    implementation 'org.greenrobot:greendao:3.2.2' // add library
 }

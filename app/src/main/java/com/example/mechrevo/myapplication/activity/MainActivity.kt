@@ -7,6 +7,10 @@ import androidx.navigation.fragment.NavHostFragment
 import com.example.mechrevo.myapplication.R
 
 class MainActivity : AppCompatActivity() {
+    companion object {
+        @JvmStatic
+        val string: String get() = ""
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,20 +23,21 @@ class MainActivity : AppCompatActivity() {
         })
         val finalHost = NavHostFragment.create(R.navigation.nav_test)
         supportFragmentManager.beginTransaction()
-            .replace(R.id.nav_host_fragment,finalHost)
+            .replace(R.id.nav_host_fragment, finalHost)
             .setPrimaryNavigationFragment(finalHost)
             .commit()
     }
 
-    override fun onSupportNavigateUp() = Navigation.findNavController(this,
+    override fun onSupportNavigateUp() = Navigation.findNavController(
+        this,
         R.id.nav_host_fragment
     ).navigateUp()
 
-    fun addTest(i:I){
+    fun addTest(i: I) {
 
     }
 
-    interface I{
+    interface I {
         fun add()
     }
 }

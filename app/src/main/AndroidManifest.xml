@@ -4,7 +4,10 @@
           package="com.example.mechrevo.myapplication">
 
     <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
+    <!-- if you want to load images from a file OR from the internet -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <application
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
@@ -29,6 +32,7 @@
         </activity>
         <activity android:name=".activity.DemoActivity">
         </activity>
+        <activity android:name=".activity.SVGAACtivity"/>
     </application>
 
 </manifest>
