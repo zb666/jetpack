@@ -22,6 +22,10 @@ import java.lang.ref.WeakReference
 
 class DemoActivity : AppCompatActivity() {
 
+    companion object {
+        private const val TAG = "DemoActivity"
+    }
+
     val baseImpl: BaseImpl by lazy { BaseImpl(10) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -94,6 +98,10 @@ class DemoActivity : AppCompatActivity() {
         override fun print() {
             Log.d("BaseImpl", "委托类开始打印")
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
     }
 
     class Derived(baseImpl: BaseImpl) : IBase by baseImpl

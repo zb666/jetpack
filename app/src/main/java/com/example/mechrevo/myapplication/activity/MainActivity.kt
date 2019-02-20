@@ -9,7 +9,8 @@ import com.example.mechrevo.myapplication.R
 class MainActivity : AppCompatActivity() {
     companion object {
         @JvmStatic
-        val string: String get() = ""
+        val string: String
+            get() = ""
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
