@@ -1,12 +1,18 @@
 package com.example.mechrevo.myapplication.activity
 
+import android.arch.lifecycle.LifecycleObserver
+import android.arch.lifecycle.Observer
 import android.content.Context
+import android.content.PeriodicSync
+import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.constraint.Constraints
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
+import androidx.work.*
 import com.example.mechrevo.myapplication.R
 import com.example.mechrevo.myapplication.adapter.RecyAdapter
 import com.example.mechrevo.myapplication.bean.HisData
@@ -14,11 +20,14 @@ import com.example.mechrevo.myapplication.bean.HistoryData
 import com.example.mechrevo.myapplication.sealed.DataClass
 import com.example.mechrevo.myapplication.sealed.Expr
 import com.example.mechrevo.myapplication.view.BeanView
+import com.example.mechrevo.myapplication.work.CompressWorker
+import com.example.mechrevo.myapplication.work.WorkA
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_demo.*
 import org.json.JSONObject
 
 import java.lang.ref.WeakReference
+import java.util.*
 
 class DemoActivity : AppCompatActivity() {
 
@@ -52,6 +61,24 @@ class DemoActivity : AppCompatActivity() {
         testWhen(2)
 
         rv_list.addAdapter(this)
+
+        val myRule = androidx.work.Constraints.Builder()
+            .setRequiresDeviceIdle(true)
+            .setRequiresCharging(true)
+            .build()
+
+        val context = this
+        val uuid = UUID.fromString("1")
+        WorkManager.getInstance().getStatusById(uuid)
+            .observe(context, android.arch.lifecycle.Observer<WorkStatus> { state ->
+
+                if (state != null && state.state.isFinished) {
+                    val adResult = state.outputData.getString("key_ad", "无")
+
+                }
+            })
+
+
 
     }
 
