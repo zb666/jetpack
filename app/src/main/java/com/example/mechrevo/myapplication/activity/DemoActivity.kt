@@ -1,5 +1,6 @@
 package com.example.mechrevo.myapplication.activity
 
+import android.annotation.SuppressLint
 import android.arch.lifecycle.LifecycleObserver
 import android.arch.lifecycle.Observer
 import android.content.Context
@@ -37,6 +38,7 @@ class DemoActivity : AppCompatActivity() {
 
     val baseImpl: BaseImpl by lazy { BaseImpl(10) }
 
+    @SuppressLint("EnqueueWork")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_demo)
@@ -68,20 +70,23 @@ class DemoActivity : AppCompatActivity() {
             .build()
 
         val context = this
-        val uuid = UUID.fromString("1")
-        WorkManager.getInstance().getStatusById(uuid)
+
+        //构建该任务
+        val request = OneTimeWorkRequest.Builder(WorkA::class.java)
+            .build()
+        //观察该任务
+        WorkManager.getInstance().getStatusById(request.id)
             .observe(context, android.arch.lifecycle.Observer<WorkStatus> { state ->
-
                 if (state != null && state.state.isFinished) {
-                    val adResult = state.outputData.getString("key_ad", "无")
-
+                    val adResult = state?.outputData?.getString("WorkA", "defalut")
+                    Log.e("WorkA", adResult)
                 }
             })
+        //开始任务
+        WorkManager.getInstance().enqueue(request)
 
-
-
+        WorkManager.getInstance().beginWith(request)
     }
-
 
     fun RecyclerView.addAdapter(context: Context) = this.apply {
         val layoutManager = LinearLayoutManager(context)
