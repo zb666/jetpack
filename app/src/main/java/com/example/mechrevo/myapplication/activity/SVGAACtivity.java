@@ -10,6 +10,7 @@ import com.opensource.svgaplayer.SVGADrawable;
 import com.opensource.svgaplayer.SVGAImageView;
 import com.opensource.svgaplayer.SVGAParser;
 import com.opensource.svgaplayer.SVGAVideoEntity;
+import org.greenrobot.eventbus.EventBus;
 import org.jetbrains.annotations.NotNull;
 
 import java.net.MalformedURLException;
@@ -54,5 +55,11 @@ public class SVGAACtivity extends AppCompatActivity implements ILoginManager{
     @Override
     public User getUser() {
         return null;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

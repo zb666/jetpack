@@ -29,16 +29,27 @@ import java.net.URL
 
 class SplashActivity : AppCompatActivity() {
 
+    companion object {
+        val a = "aaa"
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
+
         tvJump.text = "跳转SVGA 界面"
         findViewById<View>(R.id.tvJump).setOnClickListener { v ->
             startActivity(Intent(v.context, DemoActivity::class.java))
             finish()
+        }
+
+        val intent = Intent()
+        intent.setClass(this, NullActivity::class.java)
+
+        tvLeakCheck.setOnClickListener {
+            startActivity(intent)
         }
 
 

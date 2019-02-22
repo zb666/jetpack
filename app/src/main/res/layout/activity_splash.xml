@@ -32,13 +32,13 @@
             tools:ignore="MissingConstraints"/>
 
     <TextView
-            android:text="SVGA"
+            android:text="泄漏"
             android:gravity="center"
             android:layout_width="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/tvJump"
-            android:layout_height="30dp" tools:layout_editor_absoluteY="245dp"
+            android:layout_height="30dp"
             tools:layout_editor_absoluteX="142dp"
-            android:id="@+id/tvSVGA"
+            android:id="@+id/tvLeakCheck"
             tools:ignore="MissingConstraints"/>
 
 
