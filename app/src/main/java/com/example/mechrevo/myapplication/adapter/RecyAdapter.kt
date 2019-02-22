@@ -19,7 +19,6 @@ class RecyAdapter(private val context: Context) : RecyclerView.Adapter<RecyAdapt
         p0.tvGuide.text = "当前的数据结果是"
     }
 
-
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): InnerViewHolder {
         val inflaterView = LayoutInflater.from(context).inflate(
             R.layout.adapter_recycle,

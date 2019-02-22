@@ -19,6 +19,7 @@ import com.example.mechrevo.myapplication.adapter.RecyAdapter
 import com.example.mechrevo.myapplication.bean.HisData
 import com.example.mechrevo.myapplication.bean.HistoryData
 import com.example.mechrevo.myapplication.decoration.LinearItemDecoration
+import com.example.mechrevo.myapplication.layoutmanager.RyManager
 import com.example.mechrevo.myapplication.sealed.DataClass
 import com.example.mechrevo.myapplication.sealed.Expr
 import com.example.mechrevo.myapplication.view.BeanView
@@ -65,8 +66,6 @@ class DemoActivity : AppCompatActivity() {
 
         rv_list.addAdapter(this)
 
-
-
         val myRule = androidx.work.Constraints.Builder()
             .setRequiresDeviceIdle(true)
             .setRequiresCharging(true)
@@ -75,7 +74,8 @@ class DemoActivity : AppCompatActivity() {
         val context = this
 
         //构建该任务
-        val request = OneTimeWorkRequest.Builder(WorkA::class.java)
+        val request = OneTimeWorkRequest
+            .Builder(WorkA::class.java)
             .build()
         //观察该任务
         WorkManager.getInstance().getStatusById(request.id)
@@ -92,7 +92,7 @@ class DemoActivity : AppCompatActivity() {
     }
 
     fun RecyclerView.addAdapter(context: Context) = this.apply {
-        val layoutManager = LinearLayoutManager(context)
+        val layoutManager = RyManager()
         val recyclerViewPool = RecyclerView.RecycledViewPool()
         val recyAdapter = RecyAdapter(context)
         rv_list.apply {
