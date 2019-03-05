@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.arch.lifecycle.LifecycleObserver
 import android.arch.lifecycle.Observer
 import android.content.Context
+import android.content.Intent
 import android.content.PeriodicSync
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
@@ -13,6 +14,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import androidx.work.*
 import com.example.mechrevo.myapplication.R
 import com.example.mechrevo.myapplication.adapter.RecyAdapter
@@ -27,6 +29,8 @@ import com.example.mechrevo.myapplication.work.CompressWorker
 import com.example.mechrevo.myapplication.work.WorkA
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_demo.*
+import org.jetbrains.anko.longToast
+import org.jetbrains.anko.toast
 import org.json.JSONObject
 
 import java.lang.ref.WeakReference
@@ -44,6 +48,7 @@ class DemoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_demo)
+
 
         val baseImpl = BaseImpl(10)
 
@@ -91,6 +96,7 @@ class DemoActivity : AppCompatActivity() {
         WorkManager.getInstance().beginWith(request)
     }
 
+
     fun RecyclerView.addAdapter(context: Context) = this.apply {
         val layoutManager = RyManager()
         val recyclerViewPool = RecyclerView.RecycledViewPool()
@@ -119,7 +125,7 @@ class DemoActivity : AppCompatActivity() {
             2 -> {
                 System.out.print("222")
             }
-            else -> {
+            3 -> {
                 System.out.print("333")
             }
         }
@@ -138,8 +144,24 @@ class DemoActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        val intent = Intent()
+        val testOutSide = testOutSide(intent)
     }
 
     class Derived(baseImpl: BaseImpl) : IBase by baseImpl
+
+    fun DemoActivity.say() {
+        print(javaClass.simpleName)
+    }
+
+    fun testOutSide(intent: Intent): Intent = with(DemoActivity) {
+        intent.putExtra("outside", "")
+            .putExtra("age", 1)
+    }
+
+
+    fun openIntent() {
+
+    }
 
 }

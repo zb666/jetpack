@@ -5,6 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.mechrevo.myapplication.bean.DaoMaster;
 import com.example.mechrevo.myapplication.bean.DaoSession;
 import com.example.mechrevo.myapplication.bean.HisData;
+import me.jessyan.autosize.AutoSizeConfig;
+import me.jessyan.autosize.unit.Subunits;
 
 import java.util.List;
 
@@ -22,6 +24,11 @@ public class MyApp extends Application {
         HisData hisData = new HisData();
         hisData.setData("");
         daoSession.insert(hisData);
+
+        AutoSizeConfig.getInstance().getUnitsManager()
+                .setSupportDP(false)
+                .setSupportSP(false)
+                .setSupportSubunits(Subunits.MM);
 
     }
 }

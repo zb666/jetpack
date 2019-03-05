@@ -12,12 +12,14 @@ import android.widget.TextView;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import com.example.mechrevo.myapplication.R;
+import me.jessyan.autosize.AutoSizeConfig;
+import me.jessyan.autosize.internal.CustomAdapt;
 
-public class OneFm extends Fragment {
+public class OneFm extends Fragment implements CustomAdapt {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return LayoutInflater.from(getActivity()).inflate(R.layout.fragment_one,null);
+        return LayoutInflater.from(getActivity()).inflate(R.layout.fragment_one, null);
     }
 
     @Override
@@ -26,7 +28,7 @@ public class OneFm extends Fragment {
         TextView textView = view.findViewById(R.id.textView);
         textView.setText(getClass().getSimpleName());
         ViewGroup.LayoutParams layoutParams1 = textView.getLayoutParams();
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
         textView.setLayoutParams(layoutParams);
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,5 +37,18 @@ public class OneFm extends Fragment {
                         .navigate(R.id.action_oneFm_to_oneFm2);
             }
         });
+
+        AutoSizeConfig.getInstance().setCustomFragment(true);
     }
+
+    @Override
+    public boolean isBaseOnWidth() {
+        return false;
+    }
+
+    @Override
+    public float getSizeInDp() {
+        return 667;
+    }
+
 }

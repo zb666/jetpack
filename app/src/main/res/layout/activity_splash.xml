@@ -51,4 +51,12 @@
             android:background="@color/colorPrimaryDark"
             app:autoPlay="false"/>
 
+
+    <com.example.mechrevo.myapplication.view.TransView
+            android:id="@+id/transView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
 </android.support.constraint.ConstraintLayout>

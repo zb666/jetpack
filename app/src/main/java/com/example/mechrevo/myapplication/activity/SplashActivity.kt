@@ -1,5 +1,7 @@
 package com.example.mechrevo.myapplication.activity
 
+import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -17,14 +19,19 @@ import android.support.v4.app.NotificationManagerCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.design.R.id.message
 import android.view.View
+import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import com.example.mechrevo.myapplication.R
 import com.example.mechrevo.myapplication.single.UserUtil
 import com.opensource.svgaplayer.SVGAParser
 import com.youth.banner.Banner
 import com.youth.banner.loader.ImageLoader
 import kotlinx.android.synthetic.main.activity_splash.*
+import kotlinx.android.synthetic.main.fragment_one.*
+import org.jetbrains.anko.*
 import java.net.URL
 
 class SplashActivity : AppCompatActivity() {
@@ -33,26 +40,69 @@ class SplashActivity : AppCompatActivity() {
         val a = "aaa"
     }
 
+    private val log = AnkoLogger(this.javaClass)
+
+    var aaa: String? = null
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
+        val curX = tvJump.translationX
+        tvJump.textSize = 22F
+        val animX = ObjectAnimator.ofFloat(tvJump, "translationX", curX, 500f, curX)
+        animX.setDuration(1000)
 
-        tvJump.text = "跳转SVGA 界面"
+        tvJump.text = aaa?.hashCode()?.toString()
         findViewById<View>(R.id.tvJump).setOnClickListener { v ->
-            startActivity(Intent(v.context, DemoActivity::class.java))
-            finish()
+            animX.start()
         }
-
-        val intent = Intent()
-        intent.setClass(this, NullActivity::class.java)
 
         tvLeakCheck.setOnClickListener {
-            startActivity(intent)
+            open_alert()
         }
 
-
+        verticalLayout {
+            padding = dip(30)
+            editText {
+                hint = "Name"
+                textSize = 24f
+            }
+            button("Login"){
+                textSize = 26f
+            }
+        }.applyRecursively {
+            when(it){
+                is EditText -> it.textSize = 20f
+                is TextView -> it.textColor = resources.getColor(R.color.accent_material_dark)
+            }
+        }
     }
+
+
+    fun someMethod(){
+        log.warn {
+            "Big brother is watching you"
+        }
+    }
+
+    fun open_toast() {
+        toast("toast")
+        longToast("long toast")
+    }
+
+    fun open_alert() {
+        alert("Hi i am Bob") {
+            yesButton {
+                "hello this is yes button"
+            }
+            noButton {
+                "hello this is no button"
+            }
+        }.show()
+    }
+
+
 
 }
