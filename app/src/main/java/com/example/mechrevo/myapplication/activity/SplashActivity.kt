@@ -10,6 +10,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.media.tv.TvContract
 import android.os.Build
 import android.os.PersistableBundle
 import android.os.SystemClock
@@ -26,11 +27,17 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.example.mechrevo.myapplication.R
 import com.example.mechrevo.myapplication.single.UserUtil
+import com.example.mechrevo.myapplication.statedesign.PowerOffState
+import com.example.mechrevo.myapplication.statedesign.PowerOnState
+import com.example.mechrevo.myapplication.statedesign.TVController
 import com.opensource.svgaplayer.SVGAParser
 import com.youth.banner.Banner
 import com.youth.banner.loader.ImageLoader
 import kotlinx.android.synthetic.main.activity_splash.*
 import kotlinx.android.synthetic.main.fragment_one.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.jetbrains.anko.*
 import java.net.URL
 
@@ -41,7 +48,6 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private val log = AnkoLogger(this.javaClass)
-
     var aaa: String? = "dfgd"
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -77,15 +83,18 @@ class SplashActivity : AppCompatActivity() {
                 hint = "Name"
                 textSize = 24f
             }
-            button("Login"){
+            button("Login") {
                 textSize = 26f
             }
         }.applyRecursively {
-            when(it){
+            when (it) {
                 is EditText -> it.textSize = 20f
                 is TextView -> it.textColor = resources.getColor(R.color.accent_material_dark)
             }
         }
+
+
+
     }
 
     //协程
@@ -94,7 +103,7 @@ class SplashActivity : AppCompatActivity() {
     }
 
 
-    fun someMethod(){
+    fun someMethod() {
         log.warn {
             "Big brother is watching you"
         }
@@ -108,12 +117,20 @@ class SplashActivity : AppCompatActivity() {
     fun open_alert() {
         alert("Hi i am Bob") {
             yesButton {
-                "hello this is yes button"
+                getString(R.string.str_yes)
             }
             noButton {
-                "hello this is no button"
+                getString(R.string.str_hello)
             }
         }.show()
+    }
+
+    private fun coroutineSend() {
+        val uiScope = CoroutineScope(Dispatchers.Main)
+
+        repeat(100){
+
+        }
     }
 
 

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="str_hello">hello this is no button</string>
+    <string name="str_yes">hello this is yes button</string>
 </resources>
