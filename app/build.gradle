@@ -87,4 +87,6 @@ dependencies {
     // Coroutine listeners for Anko Layouts
     implementation "org.jetbrains.anko:anko-sdk25-coroutines:$anko_version"
     implementation "org.jetbrains.anko:anko-appcompat-v7-coroutines:$anko_version"
+
+    compile 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.0.0'    //添加相关包依赖
 }

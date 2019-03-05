@@ -42,13 +42,13 @@ class SplashActivity : AppCompatActivity() {
 
     private val log = AnkoLogger(this.javaClass)
 
-    var aaa: String? = null
+    var aaa: String? = "dfgd"
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-
+        testCoroutines()
         val curX = tvJump.translationX
         tvJump.textSize = 22F
         val animX = ObjectAnimator.ofFloat(tvJump, "translationX", curX, 500f, curX)
@@ -62,6 +62,14 @@ class SplashActivity : AppCompatActivity() {
         tvLeakCheck.setOnClickListener {
             open_alert()
         }
+
+        //kotlin ?:和?.的区别,两者相反 一般用?.比较多
+        //?: ->为空就返回?: 后面跟随的数据，不为空则返回null
+        //?. ->为空返回null,不为空就返回后面跟随的数据
+        val ifNullStr = aaa ?: "为空的时候返回的数据"
+        val hashCode = aaa?.hashCode()
+        //强转的过去就返回具体的值，否则的话就返回null
+        val i = aaa as? Int
 
         verticalLayout {
             padding = dip(30)
@@ -78,6 +86,11 @@ class SplashActivity : AppCompatActivity() {
                 is TextView -> it.textColor = resources.getColor(R.color.accent_material_dark)
             }
         }
+    }
+
+    //协程
+    private fun testCoroutines() {
+
     }
 
 
