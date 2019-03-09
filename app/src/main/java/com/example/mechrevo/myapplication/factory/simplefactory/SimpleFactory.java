@@ -9,7 +9,7 @@ import com.example.mechrevo.myapplication.factory.simplefactory.imple.ImpleB;
  * 工厂方法 定义一个用于创建对象的接口，让子类决定实例化哪一个类，工厂方法使得一个类的实例化可以延迟到子类中，看似
  * 很小的一部分，但是这样可以使用反射，注解等方式再进一步的区解除耦合
  */
-public class Factory {
+public class SimpleFactory {
 
     public static IApi create(int type) {
         switch (type) {
@@ -22,6 +22,12 @@ public class Factory {
         }
     }
 
+    /**
+     * 这里进行进一步的基础耦合的操作
+     * @param tClass
+     * @param <T>
+     * @return
+     */
     public static <T extends IApi> T create(Class<T> tClass) {
         IApi iApi = null;
         try {

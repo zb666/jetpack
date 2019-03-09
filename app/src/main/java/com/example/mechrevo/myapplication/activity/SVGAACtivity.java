@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import com.example.mechrevo.myapplication.R;
 import com.example.mechrevo.myapplication.bean.User;
 import com.example.mechrevo.myapplication.factory.aifac.AndroidFactory;
+import com.example.mechrevo.myapplication.factory.simplefactory.IApi;
+import com.example.mechrevo.myapplication.factory.simplefactory.SimpleFactory;
 import com.opensource.svgaplayer.SVGADrawable;
 import com.opensource.svgaplayer.SVGAImageView;
 import com.opensource.svgaplayer.SVGAParser;
@@ -24,7 +26,11 @@ public class SVGAACtivity extends AppCompatActivity implements ILoginManager {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_svga);
-        int t = getT();
+
+        new AndroidFactory().create(1).show();
+
+        IApi iApi = SimpleFactory.create(1);
+
 
     }
 
@@ -33,9 +39,9 @@ public class SVGAACtivity extends AppCompatActivity implements ILoginManager {
         try {
             i = 1;
             return i;
-        }catch (Exception ex){
+        } catch (Exception ex) {
 
-        }finally {
+        } finally {
             i = 2;
             return i;
         }
