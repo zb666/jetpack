@@ -36,7 +36,10 @@ import org.json.JSONObject
 import java.lang.ref.WeakReference
 import java.util.*
 
-class DemoActivity : AppCompatActivity() {
+class DemoActivity : AppCompatActivity(), View.OnClickListener {
+    override fun onClick(v: View?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     companion object {
         private const val TAG = "DemoActivity"
@@ -69,6 +72,7 @@ class DemoActivity : AppCompatActivity() {
 
         testWhen(2)
 
+        rv_list.setOnClickListener(this)
         rv_list.addAdapter(this)
 
         val myRule = androidx.work.Constraints.Builder()

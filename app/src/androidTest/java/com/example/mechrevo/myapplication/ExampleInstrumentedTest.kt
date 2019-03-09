@@ -21,5 +21,6 @@ class ExampleInstrumentedTest {
         val appContext = InstrumentationRegistry.getTargetContext()
         assertEquals("com.example.mechrevo.myapplication", appContext.packageName)
 
+
     }
 }
